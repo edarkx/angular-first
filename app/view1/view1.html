@@ -1,0 +1,14 @@
+<div data-ng-controller="View1Ctrl as vm" data-ng-init="vm.iniciar()">
+    
+    <p>This is View1 Controller. </p>
+
+    <div data-ng-repeat="item in vm.carrinhos.produtos">
+
+        <div>Preço: {{item.preco}}</div>
+        <div>Nome: {{item.nome}}</div>
+        <div>Quantidade: {{item.quantidade}}</div>
+
+    </div>
+
+
+</div>
