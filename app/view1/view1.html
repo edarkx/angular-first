@@ -2,12 +2,43 @@
     
     <p>This is View1 Controller. </p>
 
-    <div data-ng-repeat="item in vm.carrinhos.produtos">
 
+    Selecione o carrinho
+
+    <select ng-options="item as item.label for item in items track by item.id" 
+     ng-model="selected" ng-change="vm.selecioneCarrinho(selected.id)"></select>
+    <!-- apenas para conferir se selecionar mostro o que foi selecionado -->
+    <span data-ng-if="selected">{{'Valor selecionado: ' + selected.id}}</span>
+
+    <!--
+    <select ng-options="item.label for item in items" ng-model="selecionado"></select>
+    {{selecionado}}
+    -->
+
+    <br>
+    <div style="border: solid 1px;border-radius: 5px">
+        <legend style="text-align: center;background-color: #c2c2c2">
+            Tabela de Carrinhos</legend>
+    <table class = "table table-hover">
+           <tr>
+               <th>id</th>
+               <th>Preço</th>
+               <th>Nome</th>
+               <th>Quantidade</th>
+           </tr>
+           <tr data-ng-repeat="item in vm.carrinhos.produtos">
+               <td> {{item.id}} </td>
+               <td> {{item.preco | currency}} </td>
+               <td> {{item.nome}} </td>
+               <td> {{item.quantidade}} </td>
+           </tr>
+    </table>
+    </div>
+
+    <div  data-ng-repeat="item in vm.carrinhos.produtos">
         <div>Preço: {{item.preco}}</div>
         <div>Nome: {{item.nome}}</div>
         <div>Quantidade: {{item.quantidade}}</div>
-
     </div>
 
 

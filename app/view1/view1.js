@@ -34,28 +34,44 @@ function View1Ctrl(
     
     //Declaração de variaveis
     var vm = this;
-    vm.nome = "rose";
-    $scope.nome = "lais";
     vm.carrinhos = [];
+
+    //variaveis para o option
+    $scope.items = [{
+      id: 1,
+      label: 'carrinho1'
+    }, {
+      id: 2,
+      label: 'carrinho2'
+    }];
 
     //Declaração de metodos
     vm.iniciar = iniciar;
     vm.listarCarrinhos = listarCarrinhos;
+    vm.selecioneCarrinho = selecioneCarrinho;
 
     //metodos implementação
     function iniciar(){
       console.log("entrei no metodo iniciar");
-      listarCarrinhos();
+
+      //aqui posso iniciar listando um carrinho 1 ao carregar
+      //listarCarrinhos(1);
     }
 
-    function listarCarrinhos() {
-      AppService.consultarCarrinho(1)
+    function listarCarrinhos(id) {
+      AppService.consultarCarrinho(id)
           .then(function(response) {
               vm.carrinhos = response.data;
               console.log('car:' + JSON.stringify(response, undefined, 2));
           })['catch'](function() {
             vm.carrinhos = [];
           });
+    }
+
+    function selecioneCarrinho(id)
+    {
+      console.log("carrinho selecionado = " + id);
+      listarCarrinhos(id);
     }
 
 
